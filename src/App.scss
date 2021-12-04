@@ -1,0 +1,14 @@
+.AppBar {
+  border-bottom: #D9D9D9 1px solid;
+  display: flex;
+  flex-direction: row;
+  height: 75px;
+
+  .MuiToolbar-root, .MuiTabs-root, .MuiTabs-flexContainer {
+    height: 100%;
+  }
+
+  //a {
+  //  color: #000000;
+  //}
+}
