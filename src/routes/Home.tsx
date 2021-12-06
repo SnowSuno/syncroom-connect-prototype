@@ -1,15 +1,23 @@
-import React from "react";
+import React, {useEffect} from "react";
 
-import {Routes, Route, Outlet} from "react-router-dom";
-import Modal from "../components/Modal";
+import {Outlet} from "react-router-dom";
+import {useRooms} from "../common/hooks/useRooms";
 
 function Home() {
+    const {data, loading} = useRooms();
+
+    useEffect(() => {
+        console.log(data);
+    }, [data]);
+
+    useEffect(() => {
+        console.log(loading);
+    }, [loading]);
+
     return <>
         Home
 
-        {/*<Routes>*/}
-        {/*    <Route path=":id" element={<Modal />}/>*/}
-        {/*</Routes>*/}
+
         <Outlet />
     </>
 
