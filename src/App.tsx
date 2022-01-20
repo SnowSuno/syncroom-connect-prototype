@@ -3,15 +3,17 @@ import "./App.scss";
 
 import {matchRoutes, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 
-import Home from "./routes/Home";
-import Settings from "./routes/Settings";
-import Community from "./routes/Community";
+import Home from "./pages/Home";
+import Settings from "./pages/Settings";
+import Community from "./pages/Community";
 
 import {AppBar, Toolbar, Tabs, Tab} from "@mui/material";
 
 import {ReactComponent as Logo} from "./assets/title.svg";
 import Modal from "./components/Modal";
-import NotFound from "./routes/NotFound";
+import NotFound from "./pages/NotFound";
+
+import Filter from "./components/Filter";
 
 interface LinkTabProps {
     label?: string;
@@ -56,6 +58,7 @@ function App() {
                         <LinkTab label="커뮤니티" href="/community"/>
                         <LinkTab label="설정" href="/settings"/>
                     </Tabs>
+                    <Filter routeIndex={routeIndex}/>
                 </Toolbar>
             </AppBar>
             <Routes>
