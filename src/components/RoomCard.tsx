@@ -1,4 +1,4 @@
-import React from "react";
+import React, {forwardRef} from "react";
 
 import {Room} from "../common/classes/room";
 
@@ -8,17 +8,20 @@ interface RoomCardProps {
     room: Room;
 }
 
-function RoomCard({room}: RoomCardProps) {
+const RoomCard = forwardRef<HTMLDivElement, RoomCardProps>((
+    {room}, ref
+) => {
     const size = 1;
 
     return (
         <Card
+            ref={ref}
             elevation={0}
-            sx={{width: 100}}
+            sx={{width: 200, height: 100}}
         >
             {room.name}
         </Card>
     );
-}
+})
 
 export default RoomCard;
