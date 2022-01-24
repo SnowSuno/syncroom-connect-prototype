@@ -4,12 +4,12 @@ import {Outlet} from "react-router-dom";
 
 import {useRooms} from "../common/hooks/useRooms";
 
-import {CSSGrid, measureItems, makeResponsive} from "react-stonecutter";
+import {CSSGrid, measureItems, makeResponsive} from "../modules/react-stonecutter";
 import RoomCard from "../components/RoomCard";
 
 
 function Home() {
-    const {data, loading} = useRooms();
+    const {data, loading, error} = useRooms();
     //
     // useEffect(() => {
     //     console.log(data);
@@ -25,26 +25,28 @@ function Home() {
     });
 
     return <>
-        {/*<CSSGrid*/}
-        {/*    duration={200}*/}
-        {/*    columns={4}*/}
-        {/*    columnWidth={100}*/}
-        {/*    gutterWidth={5}*/}
-        {/*    gutterHeight={5}*/}
-        {/*>*/}
+        <CSSGrid
+            component="div"
+            duration={200}
+            columns={4}
+            columnWidth={100}
+            gutterWidth={5}
+            gutterHeight={5}
+            easing="ease"
+        >
+            {data.map(room => <div key={room.id}>
+                <RoomCard room={room} />
+            </div>)}
+
+
+
+        </CSSGrid>
+
+        {/*<div className="grid">*/}
         {/*    {data.map(room => <div id={room.id}>*/}
         {/*        <RoomCard room={room} />*/}
         {/*    </div>)}*/}
-
-
-
-        {/*</CSSGrid>*/}
-
-        <div className="grid">
-            {data.map(room => <div id={room.id}>
-                <RoomCard room={room} />
-            </div>)}
-        </div>
+        {/*</div>*/}
         <Outlet/>
     </>;
 
