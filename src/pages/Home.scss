@@ -3,6 +3,10 @@
   width: auto;
 }
 
-.test {
+.column {
+  width: auto !important;
 
+  & > div {
+    margin: 5px;
+  }
 }

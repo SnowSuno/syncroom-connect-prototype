@@ -4,11 +4,12 @@ import "./Home.scss";
 import {Room} from "../common/classes/room";
 import {Outlet} from "react-router-dom";
 
-import FlipMove from "react-flip-move";
+// import FlipMove from "react-flip-move";
 
 
 import {Flipper, Flipped} from "react-flip-toolkit";
 import Masonry from "react-masonry-css";
+// import {Masonry} from "masonic";
 
 import {useRooms} from "../common/hooks/useRooms";
 
@@ -17,7 +18,6 @@ import RoomCard from "../components/RoomCard";
 
 function Home() {
     const {data, loading, error} = useRooms();
-
 
 
     return <>
@@ -43,6 +43,20 @@ function Home() {
                     />
                 </Flipped>)}
             </Masonry>
+            {/*{data.map(room => <Flipped*/}
+            {/*    key={room.id}*/}
+            {/*    flipId={room.id}*/}
+            {/*>*/}
+            {/*    <RoomCard*/}
+            {/*        room={room}*/}
+            {/*    />*/}
+            {/*</Flipped>)}*/}
+
+            {/*<Masonry*/}
+            {/*    items={data}*/}
+            {/*    columnGutter={3}*/}
+            {/*    render={FakeRoomCard}*/}
+            {/*/>*/}
 
 
             {/*{fakeData.map(room => <Flipped*/}
@@ -57,6 +71,19 @@ function Home() {
         <Outlet/>
     </>;
 
+}
+
+interface FakeRoomCardProps {
+    data: Room;
+}
+
+function FakeRoomCard({data: room}: FakeRoomCardProps) {
+
+    return (
+        <div>
+            {room.name}
+        </div>
+    )
 }
 
 export default Home;

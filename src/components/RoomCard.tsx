@@ -9,7 +9,7 @@ interface RoomCardProps {
 }
 
 const RoomCard = forwardRef<HTMLDivElement, RoomCardProps>((
-    {room}, ref
+    {room, ...flippedProps}, ref
 ) => {
     const size = 1;
 
@@ -18,6 +18,7 @@ const RoomCard = forwardRef<HTMLDivElement, RoomCardProps>((
             ref={ref}
             elevation={0}
             sx={{width: 200, height: 100}}
+            {...flippedProps}
         >
             {room.name}
         </Card>
