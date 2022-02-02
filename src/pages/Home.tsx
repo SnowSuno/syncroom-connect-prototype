@@ -63,17 +63,5 @@ function Home() {
 
 }
 
-interface FakeRoomCardProps {
-    data: Room;
-}
-
-function FakeRoomCard({data: room}: FakeRoomCardProps) {
-
-    return (
-        <div>
-            {room.name}
-        </div>
-    )
-}
 
 export default Home;
