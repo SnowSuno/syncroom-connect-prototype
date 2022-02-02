@@ -17,13 +17,7 @@ function RoomCard ({room, ...flippedProps}: RoomCardProps) {
 
     const [z, setZ] = useState<number>(1);
 
-    useEffect(() => {
-        if (id === room.id) {
-            setZ(2);
-        }
-    }, [id, room.id])
 
-    // const [active, setActive] = useState<boolean>(false);
     const onAppear = (el: HTMLElement, i: number) => {
         el.animate([
             {
@@ -66,16 +60,16 @@ function RoomCard ({room, ...flippedProps}: RoomCardProps) {
         <Flipped
             key={room.id}
             flipId={room.id}
-            // stagger="default"
             onAppear={onAppear}
             onExit={onExit}
-            // delayUntil={}
+            onStart={() => setZ(2)}
+            onComplete={() => setZ(1)}
         >
             <Card
                 className={styles.RoomCard}
                 variant="outlined"
-                z-index={z}
-                onAnimationEnd={() => setZ(1)}
+                style={{zIndex: z}}
+                // onAnimationEnd={() => setZHook(1)}
                 {...flippedProps}
             >
                 <CardActionArea
