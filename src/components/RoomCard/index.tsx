@@ -69,7 +69,7 @@ function RoomCard ({room, ...flippedProps}: RoomCardProps) {
             <Card
                 className={styles.RoomCard}
                 variant="outlined"
-                style={{zIndex, opacity: id === room.id ? 0 : 1}}
+                style={{zIndex, opacity: id === room.id ? 0 : 1}}  // TODO : rerender show issue fix
                 // onAnimationEnd={() => setZHook(1)}
                 {...flippedProps}
             >
