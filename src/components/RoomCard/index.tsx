@@ -97,4 +97,4 @@ function RoomCard ({room, ...flippedProps}: RoomCardProps) {
     );
 }
 
-export default RoomCard;
+export default React.memo(RoomCard);
