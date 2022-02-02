@@ -5,14 +5,12 @@ import {Room} from "../common/classes/room";
 import {Outlet, useLocation} from "react-router-dom";
 
 
-import {Flipper, Flipped} from "react-flip-toolkit";
+import {Flipper} from "react-flip-toolkit";
 import Masonry from "react-masonry-css";
 
 import {useRooms} from "../common/hooks/useRooms";
 
 import RoomCard from "../components/RoomCard";
-import {getSuggestedQuery} from "@testing-library/react";
-
 
 const animationConfig = {
     spring: {
@@ -33,7 +31,6 @@ function Home() {
 
 
     return <>
-
         <Flipper
             flipKey={data.map(room => (
                 room.key

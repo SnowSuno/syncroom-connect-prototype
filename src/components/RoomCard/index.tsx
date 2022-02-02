@@ -1,12 +1,10 @@
-import React, {forwardRef, useEffect, useState} from "react";
-import classNames from "classnames";
+import React, {useEffect, useState} from "react";
 import styles from "./style.module.scss";
 
 import {Room} from "../../common/classes/room";
 import MemberItem from "./MemberItem";
 import {Card, CardActionArea} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
-import {getApiData} from "../../common/api/syncroom";
 import {Flipped} from "react-flip-toolkit";
 
 import anime from "animejs";
@@ -47,7 +45,6 @@ function RoomCard ({room, ...flippedProps}: RoomCardProps) {
             <Card
                 className={styles.RoomCard}
                 variant="outlined"
-                // sx={{width: 200, height: 100}}
                 z-index={z}
                 onAnimationEnd={() => setZ(1)}
                 {...flippedProps}
