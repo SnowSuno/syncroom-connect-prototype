@@ -16,8 +16,8 @@ import {getSuggestedQuery} from "@testing-library/react";
 
 const animationConfig = {
     spring: {
-        stiffness: 200,
-        damping: 22,
+        stiffness: 500,
+        damping: 40,
     },
     staggerConfig: {
         default: {
