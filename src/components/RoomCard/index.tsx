@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import styles from "./style.module.scss";
 
 import {Room} from "../../common/classes/room";
 import MemberItem from "./MemberItem";
 import {Card, CardActionArea} from "@mui/material";
-import {useNavigate, useParams} from "react-router-dom";
-import {Flipped, spring} from "react-flip-toolkit";
+import {useNavigate} from "react-router-dom";
+import {Flipped} from "react-flip-toolkit";
 
 interface RoomCardProps {
     room: Room;
@@ -13,7 +13,6 @@ interface RoomCardProps {
 
 function RoomCard ({room, ...flippedProps}: RoomCardProps) {
     const navagate = useNavigate();
-    const {id} = useParams();
 
     const [z, setZ] = useState<number>(1);
 

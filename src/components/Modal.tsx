@@ -4,7 +4,7 @@ import styles from "./Modal.module.scss";
 import {useNavigate, useParams} from "react-router-dom";
 
 import {Flipped} from "react-flip-toolkit";
-import {Card, Dialog} from "@mui/material";
+import {Card} from "@mui/material";
 
 
 function Modal() {

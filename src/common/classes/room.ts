@@ -15,11 +15,6 @@ const idHash = (timestamp: string, mid: string): string => {
         .getTime() % 21600000 * 1000 + parseInt(mid));
 };
 
-const memberParser = (nickList: string[], iconList: ApiIconData[], num: number) => {
-    return Array(num).map((_, i) => {
-
-    });
-}
 
 export class Room {
     public readonly id: string

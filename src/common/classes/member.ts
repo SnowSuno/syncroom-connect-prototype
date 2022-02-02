@@ -1,6 +1,3 @@
-import {ApiIconData} from "../api/syncroom";
-
-
 
 export class Member {
     public readonly name: string;

@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import styles from "./Home.module.scss";
 
-import {Room} from "../common/classes/room";
 import {Outlet, useLocation} from "react-router-dom";
 
 
