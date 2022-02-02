@@ -11,10 +11,32 @@ function Modal() {
     const {id} = useParams();
     const navigate = useNavigate();
 
-    return (
+    const onAppear = (el: HTMLElement, i: number) => {
+        el.animate([
+            {
+                opacity: 0,
+            },
+            {
+                opacity: 1,
+            }
+        ], {
+            duration: 2000,
+            easing: "ease-out"
+        })
+        el.style.opacity = "1"
+    }
+
+    return (<>
+        <Flipped
+            onAppear={onAppear}
+        >
+            <div
+                className={styles.background}
+                onClick={() => navigate("/")}
+            />
+        </Flipped>
         <Flipped
             flipId={id}
-            portalKey={id}
         >
             {/*<Dialog*/}
             {/*    onClose={() => navigate("/")}*/}
@@ -29,7 +51,7 @@ function Modal() {
                 id is {id}
             </Card>
         </Flipped>
-    )
+    </>)
 }
 
 export default Modal;

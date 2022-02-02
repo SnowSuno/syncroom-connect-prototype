@@ -5,9 +5,7 @@ import {Room} from "../../common/classes/room";
 import MemberItem from "./MemberItem";
 import {Card, CardActionArea} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
-import {Flipped} from "react-flip-toolkit";
-
-import anime from "animejs";
+import {Flipped, spring} from "react-flip-toolkit";
 
 interface RoomCardProps {
     room: Room;
@@ -26,21 +24,52 @@ function RoomCard ({room, ...flippedProps}: RoomCardProps) {
     }, [id, room.id])
 
     // const [active, setActive] = useState<boolean>(false);
-    const onAppear = (el: HTMLElement, i: number) =>
-        anime({
-            targets: el,
-            opacity: 1,
-            easing: "easeInCubic",
-            duration: 0.5,
+    const onAppear = (el: HTMLElement, i: number) => {
+        el.animate([
+            {
+                opacity: 0,
+                transform: "scale(0.8)"
+            },
+            {
+                opacity: 1,
+                transform: "scale(1)"
+            }
+        ], {
+            duration: 200,
+            easing: "ease-out"
         })
+        el.style.opacity = "1"
+    }
+
+
+    const onExit = (el: HTMLElement, _: number, onComplete: () => void) => {
+        el.animate([
+            {
+                opacity: 1,
+                transform: "scale(1)"
+            },
+            {
+                opacity: 0,
+                transform: "scale(0.8)"
+            }
+        ], {
+            duration: 2000,
+            easing: "ease-out"
+        })
+        // el.onanimationend = onComplete;
+        onComplete();
+    }
+
 
 
     return (
         <Flipped
             key={room.id}
             flipId={room.id}
-            stagger
+            // stagger="default"
             onAppear={onAppear}
+            onExit={onExit}
+            // delayUntil={}
         >
             <Card
                 className={styles.RoomCard}

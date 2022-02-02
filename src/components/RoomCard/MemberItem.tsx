@@ -17,4 +17,4 @@ function MemberItem({member}: MemberItemProps) {
     )
 }
 
-export default MemberItem;
+export default React.memo(MemberItem);
