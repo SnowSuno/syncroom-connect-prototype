@@ -4,7 +4,7 @@ import styles from "./style.module.scss";
 import {Room} from "../../common/classes/room";
 import MemberItem from "./MemberItem";
 import {Card, CardActionArea} from "@mui/material";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {Flipped} from "react-flip-toolkit";
 
 interface RoomCardProps {
@@ -13,8 +13,9 @@ interface RoomCardProps {
 
 function RoomCard ({room, ...flippedProps}: RoomCardProps) {
     const navagate = useNavigate();
+    const {id} = useParams();
 
-    const [z, setZ] = useState<number>(1);
+    const [zIndex, setZIndex] = useState<number>(1);
 
 
     const onAppear = (el: HTMLElement, i: number) => {
@@ -62,13 +63,13 @@ function RoomCard ({room, ...flippedProps}: RoomCardProps) {
             flipId={room.id}
             onAppear={onAppear}
             onExit={onExit}
-            onStart={() => setZ(2)}
-            onComplete={() => setZ(1)}
+            onStart={() => setZIndex(2)}
+            onComplete={() => setZIndex(1)}
         >
             <Card
                 className={styles.RoomCard}
                 variant="outlined"
-                style={{zIndex: z}}
+                style={{zIndex, opacity: id === room.id ? 0 : 1}}
                 // onAnimationEnd={() => setZHook(1)}
                 {...flippedProps}
             >
