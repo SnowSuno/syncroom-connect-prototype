@@ -45,15 +45,6 @@ function Home() {
                 className={styles.grid}
                 columnClassName={styles.column}
             >
-                {/*{data.map(room => <Flipped*/}
-                {/*    key={room.id}*/}
-                {/*    flipId={room.id}*/}
-                {/*>*/}
-                {/*    <RoomCard*/}
-                {/*        room={room}*/}
-                {/*    />*/}
-                {/*</Flipped>)}*/}
-
                 {data.map(room => <RoomCard room={room}/>)}
             </Masonry>
 
