@@ -7,14 +7,15 @@ import MemberItem from "./MemberItem";
 import {Card, CardActionArea} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
 import {getApiData} from "../../common/api/syncroom";
+import {Flipped} from "react-flip-toolkit";
+
+import anime from "animejs";
 
 interface RoomCardProps {
     room: Room;
 }
 
-const RoomCard = forwardRef<HTMLDivElement, RoomCardProps>((
-    {room, ...flippedProps}, ref
-) => {
+function RoomCard ({room, ...flippedProps}: RoomCardProps) {
     const navagate = useNavigate();
     const {id} = useParams();
 
@@ -27,38 +28,52 @@ const RoomCard = forwardRef<HTMLDivElement, RoomCardProps>((
     }, [id, room.id])
 
     // const [active, setActive] = useState<boolean>(false);
+    const onAppear = (el: HTMLElement, i: number) =>
+        anime({
+            targets: el,
+            opacity: 1,
+            easing: "easeInCubic",
+            duration: 0.5,
+        })
+
 
     return (
-        <Card
-            ref={ref}
-            className={styles.RoomCard}
-            variant="outlined"
-            // sx={{width: 200, height: 100}}
-            z-index={z}
-            onAnimationEnd={() => setZ(1)}
-            {...flippedProps}
+        <Flipped
+            key={room.id}
+            flipId={room.id}
+            stagger
+            onAppear={onAppear}
         >
-            <CardActionArea
-                onClick={() => {
-                    navagate(`/${room.id}`)
-                }}
+            <Card
+                className={styles.RoomCard}
+                variant="outlined"
+                // sx={{width: 200, height: 100}}
+                z-index={z}
+                onAnimationEnd={() => setZ(1)}
+                {...flippedProps}
             >
-                <div className={styles.tags}>
-                    {room.tags.map(tag => <p>{`#${tag}`}</p>)}
-                </div>
+                <CardActionArea
+                    onClick={() => {
+                        navagate(`/${room.id}`)
+                    }}
+                >
+                    <div className={styles.tags}>
+                        {room.tags.map(tag => <p>{`#${tag}`}</p>)}
+                    </div>
 
-                <div className={styles.head}>
-                    {room.name}
-                </div>
+                    <div className={styles.head}>
+                        {room.name}
+                    </div>
 
-                <div className={styles.members}>
-                    {room.members.map(member => (
-                        <MemberItem member={member}/>
-                    ))}
-                </div>
-            </CardActionArea>
-        </Card>
+                    <div className={styles.members}>
+                        {room.members.map(member => (
+                            <MemberItem member={member}/>
+                        ))}
+                    </div>
+                </CardActionArea>
+            </Card>
+        </Flipped>
     );
-})
+}
 
 export default RoomCard;

@@ -14,6 +14,19 @@ import RoomCard from "../components/RoomCard";
 import {getSuggestedQuery} from "@testing-library/react";
 
 
+const animationConfig = {
+    spring: {
+        stiffness: 200,
+        damping: 22,
+    },
+    staggerConfig: {
+        default: {
+            reverse: false,
+            speed: .1,
+        }
+    }
+}
+
 function Home() {
     const {data, loading, error} = useRooms();
     const location = useLocation()
@@ -21,22 +34,27 @@ function Home() {
 
     return <>
 
-        <Flipper flipKey={data.map(room => (
-            room.key
-        )).join("") + location.pathname}>
+        <Flipper
+            flipKey={data.map(room => (
+                room.key
+            )).join("") + location.pathname}
+            {...animationConfig}
+        >
             <Masonry
                 breakpointCols={4}
                 className={styles.grid}
                 columnClassName={styles.column}
             >
-                {data.map(room => <Flipped
-                    key={room.id}
-                    flipId={room.id}
-                >
-                    <RoomCard
-                        room={room}
-                    />
-                </Flipped>)}
+                {/*{data.map(room => <Flipped*/}
+                {/*    key={room.id}*/}
+                {/*    flipId={room.id}*/}
+                {/*>*/}
+                {/*    <RoomCard*/}
+                {/*        room={room}*/}
+                {/*    />*/}
+                {/*</Flipped>)}*/}
+
+                {data.map(room => <RoomCard room={room}/>)}
             </Masonry>
 
             <Outlet/>

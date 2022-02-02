@@ -10,6 +10,8 @@
   & > button {
     padding: 10px;
   }
+
+  transition: opacity 2s ease;
 }
 
 @mixin hide-overflow {
@@ -50,3 +52,16 @@
 .test {
   position: absolute;
 }
+
+//.appear {
+//  animation: appear 1s ease;
+//}
+//
+//@keyframes appear {
+//  from {
+//    opacity: 0;
+//  }
+//  to {
+//    opacity: 1;
+//  }
+//}
