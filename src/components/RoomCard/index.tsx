@@ -21,36 +21,37 @@ function RoomCard ({room, ...flippedProps}: RoomCardProps) {
         el.animate([
             {
                 opacity: 0,
-                transform: "scale(0.8)"
+                // transform: "scale(0.8)"
             },
             {
                 opacity: 1,
-                transform: "scale(1)"
+                // transform: "scale(1)"
             }
         ], {
             duration: 200,
-            easing: "ease-out"
-        })
-        el.style.opacity = "1"
+            easing: "ease-out",
+        }).onfinish = () => {
+            el.style.opacity = "1"
+        }
     }
 
 
     const onExit = (el: HTMLElement, _: number, onComplete: () => void) => {
+        console.log(`exit ${room.name}`)
         el.animate([
             {
                 opacity: 1,
-                transform: "scale(1)"
+                // transform: "scale(1)"
             },
             {
                 opacity: 0,
-                transform: "scale(0.8)"
+                // transform: "scale(0.8)"
             }
         ], {
-            duration: 2000,
+            duration: 200,
             easing: "ease-out"
-        })
-        // el.onanimationend = onComplete;
-        onComplete();
+        }).onfinish = onComplete;
+        // onComplete();
     }
 
 
