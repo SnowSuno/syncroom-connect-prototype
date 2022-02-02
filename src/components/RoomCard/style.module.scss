@@ -1,0 +1,67 @@
+.RoomCard {
+  width: 250px;
+  //padding: 10px 12px 10px;
+  //height: 200px;
+
+  //box-shadow: 0 0 5px rgba(127, 127, 127, 0.1);
+  //overflow: hidden;
+  isolation: isolate;
+
+  & > button {
+    padding: 10px;
+  }
+
+  transition: opacity 2s ease;
+}
+
+@mixin hide-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  //gap: 5px;
+
+  & > p {
+    font-size: 12px;
+    margin: 0 7px 0 0;
+    color: #40b2a4;
+  }
+}
+
+.head {
+  @include hide-overflow;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.members {
+  display: flex;
+  flex-direction: column;
+}
+
+.member {
+  color: #545454;
+  font-size: 14px;
+}
+
+.test {
+  position: absolute;
+}
+
+//.appear {
+//  animation: appear 1s ease;
+//}
+//
+//@keyframes appear {
+//  from {
+//    opacity: 0;
+//  }
+//  to {
+//    opacity: 1;
+//  }
+//}

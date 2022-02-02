@@ -1,55 +1,67 @@
-import React, {useEffect} from "react";
-import "./Home.scss";
-import {Outlet} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import styles from "./Home.module.scss";
+
+import {Room} from "../common/classes/room";
+import {Outlet, useLocation} from "react-router-dom";
+
+
+import {Flipper, Flipped} from "react-flip-toolkit";
+import Masonry from "react-masonry-css";
 
 import {useRooms} from "../common/hooks/useRooms";
 
-import {CSSGrid, measureItems, makeResponsive} from "../modules/react-stonecutter";
 import RoomCard from "../components/RoomCard";
+import {getSuggestedQuery} from "@testing-library/react";
 
+
+const animationConfig = {
+    spring: {
+        stiffness: 500,
+        damping: 40,
+    },
+    staggerConfig: {
+        default: {
+            reverse: false,
+            speed: .1,
+        }
+    }
+}
 
 function Home() {
     const {data, loading, error} = useRooms();
-    //
-    // useEffect(() => {
-    //     console.log(data);
-    // }, [data]);
-    //
-    // useEffect(() => {
-    //     console.log(loading);
-    // }, [loading]);
-    //
-    const Grid = makeResponsive(measureItems(CSSGrid), {
-        maxWidth: 1920,
-        minPadding: 100,
-    });
+    const location = useLocation()
+
 
     return <>
-        <CSSGrid
-            component="div"
-            duration={200}
-            columns={4}
-            columnWidth={100}
-            gutterWidth={5}
-            gutterHeight={5}
-            easing="ease"
+
+        <Flipper
+            flipKey={data.map(room => (
+                room.key
+            )).join("") + location.pathname}
+            {...animationConfig}
         >
-            {data.map(room => <div key={room.id}>
-                <RoomCard room={room} />
-            </div>)}
+            <Masonry
+                breakpointCols={4}
+                className={styles.grid}
+                columnClassName={styles.column}
+            >
+                {/*{data.map(room => <Flipped*/}
+                {/*    key={room.id}*/}
+                {/*    flipId={room.id}*/}
+                {/*>*/}
+                {/*    <RoomCard*/}
+                {/*        room={room}*/}
+                {/*    />*/}
+                {/*</Flipped>)}*/}
 
+                {data.map(room => <RoomCard room={room}/>)}
+            </Masonry>
 
-
-        </CSSGrid>
-
-        {/*<div className="grid">*/}
-        {/*    {data.map(room => <div id={room.id}>*/}
-        {/*        <RoomCard room={room} />*/}
-        {/*    </div>)}*/}
-        {/*</div>*/}
-        <Outlet/>
+            <Outlet/>
+        </Flipper>
     </>;
 
 }
+
 
 export default Home;

@@ -8,24 +8,10 @@ import {BrowserRouter as Router} from "react-router-dom";
 import App from "./App";
 
 import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {themeConfig} from "./theme";
 
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            light: '#81f8e8',
-            main: '#49c5b6',
-            dark: '#009486',
-            contrastText: '#fff',
-        },
-        secondary: {
-            light: '#ffffff',
-            main: '#ffffff',
-            dark: '#ffffff',
-            contrastText: '#000',
-        },
-    },
-});
+const theme = createTheme(themeConfig);
 
 ReactDOM.render(
     <React.StrictMode>

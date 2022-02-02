@@ -1,0 +1,14 @@
+.grid {
+  display: flex;
+  width: auto;
+  justify-content: center;
+}
+
+.column {
+  width: auto !important;
+
+  & > div {
+    box-sizing: border-box;
+    margin: 10px 5px 0;
+  }
+}

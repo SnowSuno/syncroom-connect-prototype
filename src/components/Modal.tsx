@@ -1,15 +1,34 @@
 import React from "react";
+import styles from "./Modal.module.scss";
 
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+
+import {Flipped} from "react-flip-toolkit";
+import {Card, Dialog} from "@mui/material";
 
 
 function Modal() {
     const {id} = useParams();
+    const navigate = useNavigate();
 
     return (
-        <div>
-            id is {id}
-        </div>
+        <Flipped
+            flipId={id}
+            portalKey={id}
+        >
+            {/*<Dialog*/}
+            {/*    onClose={() => navigate("/")}*/}
+            {/*    open={true}*/}
+            {/*>*/}
+            {/*    qweqwe*/}
+            {/*</Dialog>*/}
+            <Card
+                className={styles.Modal}
+                variant="outlined"
+            >
+                id is {id}
+            </Card>
+        </Flipped>
     )
 }
 
