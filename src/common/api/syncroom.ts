@@ -26,7 +26,7 @@ export interface ApiRoomData {
     creator_icon: ApiIconData;
     num_members: number;
     members: string[];
-    iconlist: ApiIconData[];
+    iconlist?: ApiIconData[];
 }
 
 export interface Response {

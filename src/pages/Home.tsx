@@ -1,38 +1,33 @@
 import React, {useEffect, useState} from "react";
-import "./Home.scss";
+import styles from "./Home.module.scss";
 
 import {Room} from "../common/classes/room";
-import {Outlet} from "react-router-dom";
-
-// import FlipMove from "react-flip-move";
+import {Outlet, useLocation} from "react-router-dom";
 
 
 import {Flipper, Flipped} from "react-flip-toolkit";
 import Masonry from "react-masonry-css";
-// import {Masonry} from "masonic";
 
 import {useRooms} from "../common/hooks/useRooms";
 
 import RoomCard from "../components/RoomCard";
+import {getSuggestedQuery} from "@testing-library/react";
 
 
 function Home() {
     const {data, loading, error} = useRooms();
+    const location = useLocation()
 
 
     return <>
-        {/*<FlipMove className="grid">*/}
-        {/*    {data.map(room => <RoomCard*/}
-        {/*        key={room.id}*/}
-        {/*        room={room}*/}
-        {/*    />)}*/}
-        {/*</FlipMove>*/}
 
-        <Flipper flipKey={data.map(room => room.id).join("")}>
+        <Flipper flipKey={data.map(room => (
+            room.key
+        )).join("") + location.pathname}>
             <Masonry
                 breakpointCols={4}
-                className="grid"
-                columnClassName="column"
+                className={styles.grid}
+                columnClassName={styles.column}
             >
                 {data.map(room => <Flipped
                     key={room.id}
@@ -43,32 +38,9 @@ function Home() {
                     />
                 </Flipped>)}
             </Masonry>
-            {/*{data.map(room => <Flipped*/}
-            {/*    key={room.id}*/}
-            {/*    flipId={room.id}*/}
-            {/*>*/}
-            {/*    <RoomCard*/}
-            {/*        room={room}*/}
-            {/*    />*/}
-            {/*</Flipped>)}*/}
 
-            {/*<Masonry*/}
-            {/*    items={data}*/}
-            {/*    columnGutter={3}*/}
-            {/*    render={FakeRoomCard}*/}
-            {/*/>*/}
-
-
-            {/*{fakeData.map(room => <Flipped*/}
-            {/*    key={room}*/}
-            {/*    flipId={room}*/}
-            {/*>*/}
-            {/*    <div>{room}</div>*/}
-            {/*</Flipped>)}*/}
+            <Outlet/>
         </Flipper>
-
-
-        <Outlet/>
     </>;
 
 }
