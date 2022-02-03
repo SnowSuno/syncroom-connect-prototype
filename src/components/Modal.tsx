@@ -13,17 +13,14 @@ function Modal() {
 
     const onAppear = (el: HTMLElement, i: number) => {
         el.animate([
-            {
-                opacity: 0,
-            },
-            {
-                opacity: 1,
-            }
+            {opacity: 0},
+            {opacity: 1},
         ], {
             duration: 2000,
             easing: "ease-out"
-        })
-        el.style.opacity = "1"
+        }).onfinish = () => {
+            el.style.opacity = "1";
+        }
     }
 
     return (<>
