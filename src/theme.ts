@@ -1,3 +1,5 @@
+const qwer: string[] = new Array(24).fill("")
+
 export const themeConfig = {
     palette: {
         primary: {
@@ -12,9 +14,9 @@ export const themeConfig = {
             dark: '#ffffff',
             contrastText: '#000',
         },
-        // text: {
-        //     primary: '#0e0ed3'
-        // },
+        text: {
+            primary: '#1e1e3d'
+        },
         action: {
             hover: 'rgba(255,0,0,0.1)',
             hoverOpacity: 0.04,

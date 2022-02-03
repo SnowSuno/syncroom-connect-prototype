@@ -71,7 +71,7 @@ function RoomCard({room, ...flippedProps}: RoomCardProps) {
                     styles.RoomCard,
                     {[styles.hidden]: id === room.id}
                 )}
-                variant="outlined"
+                elevation={0}
                 style={{zIndex}}
                 {...flippedProps}
             >

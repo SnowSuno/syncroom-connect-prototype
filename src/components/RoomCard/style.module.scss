@@ -5,6 +5,8 @@
   isolation: isolate;
   will-change: transform;
 
+  box-shadow: 0 0 10px rgba(127, 127, 127, 0.15) !important;
+
   & > button {
     padding: 15px;
   }
@@ -37,6 +39,7 @@
   @include hide-overflow;
   font-size: 18px;
   font-weight: 500;
+  color: #000;
 }
 
 .desc {
