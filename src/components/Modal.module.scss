@@ -1,10 +1,10 @@
 .Modal {
   position: fixed;
-  top: 0;
-  transform: translate(650px, 300px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 999;
   background-color: #FFFFFF;
-  //opacity: 1;
 
   width: 400px;
   height: 300px;
