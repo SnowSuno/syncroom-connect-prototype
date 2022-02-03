@@ -38,12 +38,6 @@ function Modal() {
         <Flipped
             flipId={id}
         >
-            {/*<Dialog*/}
-            {/*    onClose={() => navigate("/")}*/}
-            {/*    open={true}*/}
-            {/*>*/}
-            {/*    qweqwe*/}
-            {/*</Dialog>*/}
             <Card
                 className={styles.Modal}
                 variant="outlined"
