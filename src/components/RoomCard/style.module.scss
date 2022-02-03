@@ -1,21 +1,13 @@
 .RoomCard {
-  width: 250px;
+  width: 280px;
   position: relative;
-  //z-index: 2;
-  //padding: 10px 12px 10px;
-  //height: 200px;
 
-  //box-shadow: 0 0 5px rgba(127, 127, 127, 0.1);
-  //overflow: hidden;
   isolation: isolate;
   will-change: transform;
 
   & > button {
-    padding: 10px;
+    padding: 15px;
   }
-
-  //animation: appear ease 2s;
-  //transition: opacity 2s ease;
 }
 
 .hidden {
@@ -43,8 +35,18 @@
 
 .head {
   @include hide-overflow;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
+}
+
+.desc {
+  word-break: break-all;
+  color: #757575;
+  font-size: 13px;
+  padding-top: 5px;
+
+  max-height: 30px;
+  overflow: hidden;
 }
 
 .members {
@@ -53,7 +55,18 @@
 }
 
 .member {
-  color: #545454;
-  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  p {
+    @include hide-overflow;
+    color: #757575;
+    font-size: 14px;
+    margin: 0;
+    padding-block: 5px;
+    //height: 30px;
+  }
+
 }
 

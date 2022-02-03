@@ -13,7 +13,7 @@ interface RoomCardProps {
     room: Room;
 }
 
-function RoomCard ({room, ...flippedProps}: RoomCardProps) {
+function RoomCard({room, ...flippedProps}: RoomCardProps) {
     const navagate = useNavigate();
     const {id} = useParams();
 
@@ -40,7 +40,6 @@ function RoomCard ({room, ...flippedProps}: RoomCardProps) {
 
 
     const onExit = (el: HTMLElement, _: number, onComplete: () => void) => {
-        console.log(`exit ${room.name}`)
         el.animate([
             {
                 opacity: 1,
@@ -56,7 +55,6 @@ function RoomCard ({room, ...flippedProps}: RoomCardProps) {
         }).onfinish = onComplete;
         // onComplete();
     }
-
 
 
     return (
@@ -90,10 +88,14 @@ function RoomCard ({room, ...flippedProps}: RoomCardProps) {
                         {room.name}
                     </div>
 
+                    <div className={styles.desc}>
+                        {room.desc}
+                    </div>
+
                     <div className={styles.members}>
-                        {room.members.map(member => (
-                            <MemberItem member={member}/>
-                        ))}
+                        {room.members.map(member =>
+                            <MemberItem member={member} />
+                        )}
                     </div>
                 </CardActionArea>
             </Card>

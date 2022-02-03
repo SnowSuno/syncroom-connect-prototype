@@ -12,7 +12,8 @@ function MemberItem({member}: MemberItemProps) {
 
     return (
         <div className={styles.member}>
-            {member.name}
+            <div></div>
+            <p>{member.name}</p>
         </div>
     )
 }
