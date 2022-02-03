@@ -18,6 +18,10 @@
   //transition: opacity 2s ease;
 }
 
+.hidden {
+  opacity: 0;
+}
+
 @mixin hide-overflow {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -53,19 +57,3 @@
   font-size: 14px;
 }
 
-.test {
-  position: absolute;
-}
-
-//.appear {
-//  animation: appear 1s ease;
-//}
-//
-@keyframes appear {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}

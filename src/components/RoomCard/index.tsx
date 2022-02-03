@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import classNames from "classnames";
 import styles from "./style.module.scss";
 
 import {Room} from "../../common/classes/room";
@@ -6,6 +7,7 @@ import MemberItem from "./MemberItem";
 import {Card, CardActionArea} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
 import {Flipped} from "react-flip-toolkit";
+
 
 interface RoomCardProps {
     room: Room;
@@ -67,10 +69,12 @@ function RoomCard ({room, ...flippedProps}: RoomCardProps) {
             onComplete={() => setZIndex(1)}
         >
             <Card
-                className={styles.RoomCard}
+                className={classNames(
+                    styles.RoomCard,
+                    {[styles.hidden]: id === room.id}
+                )}
                 variant="outlined"
-                style={{zIndex, opacity: id === room.id ? 0 : 1}}  // TODO : rerender show issue fix
-                // onAnimationEnd={() => setZHook(1)}
+                style={{zIndex}}
                 {...flippedProps}
             >
                 <CardActionArea
