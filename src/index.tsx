@@ -7,11 +7,9 @@ import {BrowserRouter as Router} from "react-router-dom";
 
 import App from "./App";
 
-import {createTheme, ThemeProvider} from '@mui/material/styles';
-import {themeConfig} from "./theme";
+import {ThemeProvider} from '@mui/material/styles';
+import {theme} from "./theme";
 
-
-const theme = createTheme(themeConfig);
 
 ReactDOM.render(
     <React.StrictMode>

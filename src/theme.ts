@@ -1,7 +1,8 @@
-const qwer: string[] = new Array(24).fill("")
+import {createTheme} from "@mui/material/styles";
 
-export const themeConfig = {
+export const theme = createTheme({
     palette: {
+        // mode: "dark",
         primary: {
             light: '#81f8e8',
             main: '#49c5b6',
@@ -14,9 +15,9 @@ export const themeConfig = {
             dark: '#ffffff',
             contrastText: '#000',
         },
-        text: {
-            primary: '#1e1e3d'
-        },
+        // text: {
+        //     primary: '#1e1e3d'
+        // },
         action: {
             hover: 'rgba(255,0,0,0.1)',
             hoverOpacity: 0.04,
@@ -27,4 +28,4 @@ export const themeConfig = {
     shape: {
         borderRadius: 8,
     }
-}
+})
