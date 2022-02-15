@@ -12,7 +12,7 @@ function MemberItem({member}: MemberItemProps) {
 
     return (
         <div className={styles.member}>
-            <div></div>
+            <div>{member.icon.render()}</div>
             <p>{member.name}</p>
         </div>
     )

@@ -27,12 +27,16 @@ export class Room {
     public readonly isPrivate: boolean;
 
     private readonly _creator: string;
-    private readonly _tagMask?: string;
-    private readonly _tagOrig?: string;
+    // private readonly _tagMask?: string;
+    // private readonly _tagOrig?: string;
 
-    private readonly _numMembers: number;
-    private readonly _memberNames: string[];
-    private readonly _memberIcons: ApiIconData[];
+    // private readonly _numMembers: number;
+    // private readonly _memberNames: string[];
+    // private readonly _memberIcons: ApiIconData[];
+    public readonly country: Country;
+    public readonly tags: string[];
+
+    public readonly members: Member[];
 
     constructor(data: ApiRoomData) {
         this.id = idHash(data.create_time, data.creator_mid);
@@ -41,16 +45,17 @@ export class Room {
         this.isPrivate = data.need_passwd;
 
         this._creator = data.creator_nick;
-        this._tagMask = data.tag_mask;
-        this._tagOrig = data.tag_orig;
 
-        this._numMembers = data.num_members;
-        this._memberNames = data.members;
-        this._memberIcons = data.iconlist || [];
+        this.country = this._parseCountry()
+        this.tags = this._parseTags(data.tag_mask, data.tag_orig);
+        this.members = this._parseMembers(
+            data.num_members,
+            data.members,
+            data.iconlist || [],
+        )
     }
 
-
-    public get country(): Country {
+    private _parseCountry(): Country {
         let country: Country = Country.OTHER;
         [this._creator, this.desc, this.name].forEach(text => {
             if (korean.test(text)) {
@@ -62,53 +67,43 @@ export class Room {
         return country;
     }
 
-    public get tags(): string[] {
-        if (!this._tagMask) return [];
-        const binaryMask = parseInt(this._tagMask).toString(2).split("").reverse();
+    private _parseTags(tagMask?: string, tagOrig?: string): string[] {
+        if (!tagMask) return [];
+        const binaryMask = parseInt(tagMask).toString(2).split("").reverse();
         const tags: string[] = TAG_MAP.filter((_, i) => binaryMask[i] === "1");
-        if (binaryMask[31] === "1" && this._tagOrig) tags.push(this._tagOrig);
+        if (binaryMask[31] === "1" && tagOrig) tags.push(tagOrig);
         return tags;
     }
 
-    public get members(): Member[] {
-        let privateCount = 0;
-        const members = Array.from(
-            {length: this._numMembers},
-            (_, i) => this._parseMember(i, privateCount)
-        );
+    private _parseMembers(
+        numMembers: number,
+        names: string[],
+        icons: ApiIconData[],
+    ): Member[] {
+        const numPrivateMembers = numMembers - names.length;
 
-        members.sort((a, b) => {
-            if (a instanceof TempMember) {
-                return 1;
-            }
-            if (b instanceof TempMember) {
-                return -1;
-            }
-            return 0;
-        })
+        const publicMembers: Member[] = names
+            .filter(name => name !== "")
+            .map((name, i) => new PublicMember(
+                name,
+                icons[i],
+                name === this._creator
+            ));
 
-        return members;
+        const privateMembers: Member[] = Array.from(
+            {length: numPrivateMembers},
+            (_, i) => new PrivateMember(i));
+
+        const tempMembers: Member[] = Array(
+            numMembers - publicMembers.length - privateMembers.length
+        ).fill(new TempMember());
+
+        return [...publicMembers, ...privateMembers, ...tempMembers];
     }
 
-    private _parseMember(index: number, privateCount: number): Member {
-        const name = this._memberNames[index];
-        const icon = this._memberIcons[index];
-
-        if (name === undefined || icon === undefined) {
-            return new PrivateMember(privateCount);
-        }
-
-        if (name === "") {
-            return new TempMember();
-        }
-
-        return new PublicMember(
-            name,
-        )
-    }
 
     public get key() {
-        return this.id + this._numMembers;
+        return this.id + this.members.map(m => m.id).join("");
     }
 }
 

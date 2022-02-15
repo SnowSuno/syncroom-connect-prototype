@@ -71,5 +71,10 @@
     //height: 30px;
   }
 
+  // todo: move styles to icon.render();
+  svg, img {
+    height: 20px;
+    width: 20px;
+  }
 }
 
