@@ -81,7 +81,7 @@ function RoomCard({room, ...flippedProps}: RoomCardProps) {
                     }}
                 >
                     <div className={styles.tags}>
-                        {room.tags.map(tag => <p>{`#${tag}`}</p>)}
+                        {room.tags.map(tag => <p key={tag}>{`#${tag}`}</p>)}
                     </div>
 
                     <div className={styles.head}>
@@ -94,7 +94,7 @@ function RoomCard({room, ...flippedProps}: RoomCardProps) {
 
                     <div className={styles.members}>
                         {room.members.map(member =>
-                            <MemberItem member={member} />
+                            <MemberItem key={member.id} member={member}/>
                         )}
                     </div>
                 </CardActionArea>

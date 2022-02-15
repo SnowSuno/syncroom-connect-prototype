@@ -10,6 +10,7 @@ import Masonry from "react-masonry-css";
 import {useRooms} from "../common/hooks/useRooms";
 
 import RoomCard from "../components/RoomCard";
+import {Room} from "../common/classes/room";
 
 const animationConfig = {
     spring: {
@@ -41,7 +42,7 @@ function Home() {
                 className={styles.grid}
                 columnClassName={styles.column}
             >
-                {data.map(room => <RoomCard room={room}/>)}
+                {data.map(room => <RoomCard key={room.id} room={room}/>)}
             </Masonry>
 
             <Outlet/>
