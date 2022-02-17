@@ -7,10 +7,10 @@ import {Outlet, useLocation} from "react-router-dom";
 import {Flipper} from "react-flip-toolkit";
 import Masonry from "react-masonry-css";
 
-import {useRooms} from "../common/hooks/useRooms";
+import {useRooms} from "../services/hooks/useRooms";
 
-import RoomCard from "../components/RoomCard";
-import {Room} from "../common/classes/room";
+import RoomCard from "../components/home/RoomCard";
+import {Room} from "../services/classes/room";
 
 const animationConfig = {
     spring: {

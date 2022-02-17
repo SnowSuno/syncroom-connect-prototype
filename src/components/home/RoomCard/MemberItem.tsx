@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./style.module.scss";
 
-import {Member} from "../../common/classes/member";
+import {Member} from "../../../services/classes/member";
 
 interface MemberItemProps {
     member: Member;

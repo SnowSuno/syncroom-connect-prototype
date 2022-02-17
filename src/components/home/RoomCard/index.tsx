@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import classNames from "classnames";
 import styles from "./style.module.scss";
 
-import {Room} from "../../common/classes/room";
+import {Room} from "../../../services/classes/room";
 import MemberItem from "./MemberItem";
 import {Card, CardActionArea, CardActions, Button} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";

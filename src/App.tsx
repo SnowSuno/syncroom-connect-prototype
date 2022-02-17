@@ -10,10 +10,10 @@ import Community from "./pages/Community";
 import {AppBar, Toolbar, Tabs, Tab} from "@mui/material";
 
 import {ReactComponent as Logo} from "./assets/title.svg";
-import Modal from "./components/Modal";
+import Modal from "./components/home/Modal";
 import NotFound from "./pages/NotFound";
 
-import Filter from "./components/Filter";
+import Filter from "./components/home/Filter";
 
 interface LinkTabProps {
     label?: string;
