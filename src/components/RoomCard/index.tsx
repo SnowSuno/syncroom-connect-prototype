@@ -4,7 +4,7 @@ import styles from "./style.module.scss";
 
 import {Room} from "../../common/classes/room";
 import MemberItem from "./MemberItem";
-import {Card, CardActionArea} from "@mui/material";
+import {Card, CardActionArea, CardActions, Button} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
 import {Flipped} from "react-flip-toolkit";
 
@@ -98,6 +98,14 @@ function RoomCard({room, ...flippedProps}: RoomCardProps) {
                         )}
                     </div>
                 </CardActionArea>
+                <CardActions>
+                    <Button size="small">
+                        임시
+                    </Button>
+                    <Button size="small">
+                        참여
+                    </Button>
+                </CardActions>
             </Card>
         </Flipped>
     );
